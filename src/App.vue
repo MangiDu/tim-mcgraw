@@ -12,6 +12,5 @@
   </section>
 </template>
 
-<style src="./style/base.styl" lang="stylus"></style>
 <style src="iview/dist/styles/iview.css"></style>
 <style src="./style/index.styl" lang="stylus"></style>

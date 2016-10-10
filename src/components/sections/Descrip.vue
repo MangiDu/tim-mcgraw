@@ -1,7 +1,7 @@
 <template lang="html">
-  <doc-section title="Group">
+  <doc-section title="Description">
     <div>
-      <input type="text" v-model="name">
+      <textarea v-model="descrip"></textarea>
     </div>
   </doc-section>
 </template>
@@ -11,7 +11,7 @@ import DocSection from '../common/DocSection'
 export default {
   data () {
     return {
-      name: ''
+      descrip: ''
     }
   },
   components: {

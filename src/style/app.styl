@@ -16,13 +16,16 @@ html, body
   width: 80%
   padding: 20px
   border-radius: 4px
-  margin: 10px auto
+  margin: 0 auto
   background-color: color-fg
   box-shadow: 0 0 6px color-shadow
   input, textarea
     padding: 0 5px
     section-border-style()
-
+    &:focus
+      outline: none
+      border-color: color-focus
+      box-shadow: 0 0 2px color-focus
 
 .app-footer
   // position: absolute
@@ -36,3 +39,7 @@ html, body
     padding-left: 20px
     &:first-child
       padding-left: 0
+
+.app-operations
+  padding-top: 10px
+  text-align: center

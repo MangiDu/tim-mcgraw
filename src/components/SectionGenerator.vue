@@ -1,40 +1,10 @@
 <template lang="html">
   <div>
-    <group-section></group-section>
+    <group-section :sections.sync="sections"></group-section>
+    <header-section :sections.sync="sections"></header-section>
+    <descrip-section :sections.sync="sections"></descrip-section>
+    <params-section :sections.sync="sections"></params-section>
     <!-- <div class="">
-      <label>描述</label>
-      <input type="text" v-model="description">
-    </div>
-    <div class="">
-      <label>方法</label>
-      <select v-model="method">
-        <option>GET</option>
-        <option>POST</option>
-        <option>DELETE</option>
-        <option>PUT</option>
-        <option>PATCH</option>
-      </select>
-    </div>
-    <div class="">
-      <label>参数</label>
-      <ul v-if="params.length">
-        <li v-for="para in params">名: {{ para.name }}; 值: {{ para.value }}; 类型: {{ para.type }}</li>
-      </ul>
-      <label>名</label>
-      <input type="text" v-model="paraCache.name">
-      <label>值</label>
-      <input type="text" v-model="paraCache.value">
-      <label>类型</label>
-      <select v-model="paraCache.type">
-        <option>string</option>
-        <option>number</option>
-        <option>boolean</option>
-        <option>array</option>
-        <option>enum</option>
-      </select>
-      <button type="button" name="button" @click="addParam">添加</button>
-    </div>
-    <div class="">
       <label>请求</label>
 
     </div>
@@ -46,11 +16,16 @@
 </template>
 
 <script>
+// TODO:最开始应该是先选择添加什么部分
+
 import GroupSection from './sections/Group'
+import HeaderSection from './sections/Header'
+import DescripSection from './sections/Descrip'
+import ParamsSection from './sections/Params'
 export default {
   props: {
-    section: {
-      type: Object,
+    sections: {
+      type: Array,
       required: true
     }
   },
@@ -72,7 +47,10 @@ export default {
     }
   },
   components: {
-    GroupSection
+    GroupSection,
+    HeaderSection,
+    DescripSection,
+    ParamsSection
   }
 }
 </script>

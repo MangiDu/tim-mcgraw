@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="doc-section">
-    <label class="section-label">{{ title || 'section title' }}</label>
+    <label class="section-label"><strong>{{ title || 'section title' }}</strong></label>
     <div class="section-content">
       <slot></slot>
     </div>

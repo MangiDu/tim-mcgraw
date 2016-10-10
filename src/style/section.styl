@@ -1,5 +1,8 @@
 .doc-section
   position: relative
+  margin-top: 10px
+  &:first-child
+    margin-top: 0
   .section-label
     position: absolute
     top: 0
@@ -11,12 +14,13 @@
     margin-left: 80px
 
 .section-content
-  input
+  input, textarea
     width: 100%
+  textarea
+    resize: none
 
 .section-shower
-  min-height: 380px
   textarea
     width: 100%
-    height: 100%
+    height: 400px
     resize: none

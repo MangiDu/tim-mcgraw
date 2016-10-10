@@ -4,7 +4,7 @@ const LIST_PREFIX = '+'
 
 let converter = {}
 converter.group = function (input) {
-  return `${HEAD_PREFIX} ${input}\n`
+  return `${HEAD_PREFIX} Group ${input}\n`
 }
 
 module.exports = function (type, input) {

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="section-shower">
-    <textarea></textarea>
+    <textarea readonly="readonly"></textarea>
   </div>
 </template>
 
