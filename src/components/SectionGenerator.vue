@@ -1,17 +1,9 @@
 <template lang="html">
   <div>
-    <doc-section title="Group">
-      <group></group>
-    </doc-section>
-    <doc-section title="Header">
-      <basic></basic>
-    </doc-section>
-    <doc-section title="Description">
-      <descrip></descrip>
-    </doc-section>
-    <doc-section title="Parameters">
-      <params></params>
-    </doc-section>
+    <doc-section title="Group" type="group" :sections.sync="sections"></doc-section>
+    <doc-section title="Header" type="basic" :sections.sync="sections"></doc-section>
+    <doc-section title="Description" type="descrip" :sections.sync="sections"></doc-section>
+    <doc-section title="Parameters" type="params" :sections.sync="sections"></doc-section>
   </div>
 </template>
 
@@ -20,10 +12,6 @@
 // 应该用Generator去管理子section的order顺序,而不是把section数组给它们自己赋值
 
 import DocSection from './common/DocSection'
-import Group from './sections/Group'
-import Basic from './sections/Basic'
-import Descrip from './sections/Descrip'
-import Params from './sections/Params'
 export default {
   props: {
     sections: {
@@ -49,11 +37,7 @@ export default {
     }
   },
   components: {
-    DocSection,
-    Group,
-    Basic,
-    Descrip,
-    Params
+    DocSection
   }
 }
 </script>
