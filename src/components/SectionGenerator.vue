@@ -1,27 +1,29 @@
 <template lang="html">
   <div>
-    <group-section :sections.sync="sections"></group-section>
-    <header-section :sections.sync="sections"></header-section>
-    <descrip-section :sections.sync="sections"></descrip-section>
-    <params-section :sections.sync="sections"></params-section>
-    <!-- <div class="">
-      <label>请求</label>
-
-    </div>
-    <div class="">
-      <label>响应</label>
-
-    </div> -->
+    <doc-section title="Group">
+      <group></group>
+    </doc-section>
+    <doc-section title="Header">
+      <basic></basic>
+    </doc-section>
+    <doc-section title="Description">
+      <descrip></descrip>
+    </doc-section>
+    <doc-section title="Parameters">
+      <params></params>
+    </doc-section>
   </div>
 </template>
 
 <script>
 // TODO:最开始应该是先选择添加什么部分
+// 应该用Generator去管理子section的order顺序,而不是把section数组给它们自己赋值
 
-import GroupSection from './sections/Group'
-import HeaderSection from './sections/Header'
-import DescripSection from './sections/Descrip'
-import ParamsSection from './sections/Params'
+import DocSection from './common/DocSection'
+import Group from './sections/Group'
+import Basic from './sections/Basic'
+import Descrip from './sections/Descrip'
+import Params from './sections/Params'
 export default {
   props: {
     sections: {
@@ -47,10 +49,11 @@ export default {
     }
   },
   components: {
-    GroupSection,
-    HeaderSection,
-    DescripSection,
-    ParamsSection
+    DocSection,
+    Group,
+    Basic,
+    Descrip,
+    Params
   }
 }
 </script>

@@ -7,8 +7,8 @@
 <script>
 export default {
   props: {
-    section: {
-      type: Object,
+    sections: {
+      type: Array,
       required: true
     }
   },

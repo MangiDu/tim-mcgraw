@@ -1,9 +1,7 @@
 <template lang="html">
-  <doc-section title="Group">
-    <div>
-      <input type="text" v-model="name">
-    </div>
-  </doc-section>
+  <div>
+    <input type="text" v-model="name">
+  </div>
 </template>
 
 <script>

@@ -1,9 +1,7 @@
 <template lang="html">
-  <doc-section title="Description">
-    <div>
-      <textarea v-model="descrip"></textarea>
-    </div>
-  </doc-section>
+  <div>
+    <textarea v-model="descrip"></textarea>
+  </div>
 </template>
 
 <script>
