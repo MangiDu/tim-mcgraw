@@ -50,6 +50,9 @@ module.exports = {
         include: projectRoot,
         exclude: /node_modules/
       },
+      { test: /iview\/.*?js$/,
+        loader: 'babel'
+      },
       {
         test: /\.json$/,
         loader: 'json'

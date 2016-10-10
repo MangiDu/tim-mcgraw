@@ -17,7 +17,7 @@ router.map({
   },
   '/index': {
     component (resolve) {
-      require(['./views/home'], resolve)
+      require(['./views/index'], resolve)
     }
   },
   '*': {

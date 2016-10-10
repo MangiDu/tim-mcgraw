@@ -8,7 +8,13 @@ export default {
     return {}
   },
   computed: {},
-  mounted () {},
+  ready () {
+    setTimeout(() => {
+      this.$route.router.go({
+        path: '/index'
+      })
+    }, 1000)
+  },
   methods: {},
   components: {}
 }

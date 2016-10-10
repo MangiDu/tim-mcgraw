@@ -1,9 +1,15 @@
 <template lang="html">
-  home
+  <textarea></textarea>
 </template>
 
 <script>
 export default {
+  props: {
+    section: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {}
   },
