@@ -1,0 +1,38 @@
+html, body
+  height: 100%
+
+#app
+  min-height: 100%
+  background-color: color-bg
+
+.app-wrapper
+  position: relative
+
+.app-header
+  line-height: 80px
+  text-align: center
+
+.container
+  width: 80%
+  padding: 20px
+  border-radius: 4px
+  margin: 10px auto
+  background-color: color-fg
+  box-shadow: 0 0 6px color-shadow
+  input, textarea
+    padding: 0 5px
+    section-border-style()
+
+
+.app-footer
+  // position: absolute
+  // bottom: 0
+  padding: 20px
+  width: 100%
+  background-color: color-fg
+
+.app-row
+  .app-col
+    padding-left: 20px
+    &:first-child
+      padding-left: 0

@@ -1,9 +1,9 @@
 <template lang="html">
-  <row>
-    <i-col span="12">
+  <row class="app-row">
+    <i-col class="app-col" span="12">
       <section-generator :section.sync="sectionObj"></section-generator>
     </i-col>
-    <i-col span="12">
+    <i-col class="app-col" span="12">
       <section-shower :section.sync="sectionObj"></section-shower>
     </i-col>
   </row>

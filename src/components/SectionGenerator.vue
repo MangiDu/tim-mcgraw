@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
-    <div class="">
+    <group-section></group-section>
+    <!-- <div class="">
       <label>描述</label>
       <input type="text" v-model="description">
     </div>
@@ -40,11 +41,12 @@
     <div class="">
       <label>响应</label>
 
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import GroupSection from './sections/Group'
 export default {
   props: {
     section: {
@@ -69,7 +71,9 @@ export default {
       this.paraCache = {}
     }
   },
-  components: {}
+  components: {
+    GroupSection
+  }
 }
 </script>
 

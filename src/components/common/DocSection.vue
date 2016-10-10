@@ -1,16 +1,16 @@
 <template lang="html">
-  <div class="section-shower">
-    <textarea></textarea>
+  <div class="doc-section">
+    <label class="section-label">{{ title || 'section title' }}</label>
+    <div class="section-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    section: {
-      type: Object,
-      required: true
-    }
+    title: String
   },
   data () {
     return {}
