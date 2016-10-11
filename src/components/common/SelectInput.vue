@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="select-input">
-    <input type="text" v-model="item" @focus="showList = true" @blur="showList = false">
-    <ul class="list" v-show="showList">
-      <li v-for="listItem in list | filterBy item">{{ listItem }}</li>
+    <input type="text" v-model="item" @focus="inputFocus = true" @blur="inputFocus = false">
+    <ul class="list" v-show="showList" @mouseover="listMouseover = true" @mouseout="listMouseover = false">
+      <li class="item" v-for="listItem in list | filterBy item" @click="set(listItem)">{{ listItem }}</li>
     </ul>
   </div>
 </template>
@@ -20,7 +20,23 @@ export default {
   },
   data () {
     return {
-      showList: false
+      listMouseover: false,
+      inputFocus: false
+    }
+  },
+  computed: {
+    showList () {
+      return this.inputFocus || this.listMouseover
+    }
+  },
+  methods: {
+    reset () {
+      this.inputFocus = false
+      this.listMouseover = false
+    },
+    set (item) {
+      this.item = item
+      this.reset()
     }
   }
 }

@@ -5,7 +5,7 @@
   </div>
   <div>
     <label>method</label>
-    <input type="text" v-model="input.method" placeholder="eg:  GET">
+    <select-input :item.sync="input.method" :list="['GET', 'POST', 'PUT', 'DELETE', 'PATCH']"></select-input>
   </div>
   <div>
     <label>path</label>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import SelectInput from '../common/SelectInput'
 export default {
   props: {
     section: {
@@ -30,7 +31,9 @@ export default {
       input: this.section.input
     }
   },
-  components: {}
+  components: {
+    SelectInput
+  }
 }
 </script>
 
