@@ -6,9 +6,7 @@
     <div class="container">
       <router-view></router-view>
     </div>
-    <!-- <footer class="app-footer">
-      footer
-    </footer> -->
+    <footer class="app-footer"></footer>
   </section>
 </template>
 

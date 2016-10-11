@@ -8,9 +8,9 @@
         <section-shower :sections.sync="sectionArr"></section-shower>
       </i-col>
     </row>
-    <div class="app-operations">
+    <!-- <div class="app-operations">
       <i-button size="large">See you, see me ~</i-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
