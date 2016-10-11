@@ -6,7 +6,7 @@
     </div>
     <div>
       <label>type</label>
-      <type-select-input :type.sync="param.paraType"></type-select-input>
+      <select-input :item.sync="param.paraType" :list="['string', 'number', 'boolean', 'object', 'array', 'enum']"></select-input>
     </div>
     <div>
       <label>requirement</label>
@@ -27,7 +27,7 @@
 <script>
 import { Radio } from 'iview'
 const RadioGroup = Radio.Group
-import TypeSelectInput from './TypeSelectInput'
+import SelectInput from './SelectInput'
 export default {
   props: {
     param: {
@@ -43,7 +43,7 @@ export default {
   components: {
     Radio,
     RadioGroup,
-    TypeSelectInput
+    SelectInput
   }
 }
 </script>

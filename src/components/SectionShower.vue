@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="section-shower">
     <!-- <textarea readonly="readonly">{{ sections | json }}</textarea> -->
-    <pre class="section-preview">{{{ sections | doc true }}}</pre>
+    <pre class="preview">{{{ sections | doc true }}}</pre>
   </div>
 </template>
 
