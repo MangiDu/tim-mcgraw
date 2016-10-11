@@ -9,7 +9,7 @@
       </i-col>
     </row>
     <div class="app-operations">
-      <i-button size="large" @click="download">See you, see me ~</i-button>
+      <i-button size="large" @click="download">I hope you think of me ~</i-button>
     </div>
   </div>
 </template>
