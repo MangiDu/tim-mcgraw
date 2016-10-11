@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <label>keyword</label>
-    <input type="text" v-model="input.keyword" placeholder="eg:  获取学生列表">
+    <input type="text" v-model="input.keyword">
   </div>
   <div>
     <label>method</label>
@@ -9,7 +9,7 @@
   </div>
   <div>
     <label>path</label>
-    <input type="text" v-model="input.path" placeholder="eg:  /students">
+    <input type="text" v-model="input.path">
   </div>
 </template>
 
