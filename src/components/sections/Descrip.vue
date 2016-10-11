@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <textarea v-model="section.descrip"></textarea>
+    <textarea v-model="input.descrip"></textarea>
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
           type: 'descrip'
         }
       }
+    }
+  },
+  data () {
+    return {
+      input: this.section.input
     }
   },
   components: {

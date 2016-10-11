@@ -1,9 +1,6 @@
 <template lang="html">
   <div>
-    <doc-section title="Group" type="group" :section.sync="sections[0]"></doc-section>
-    <doc-section title="Header" type="basic" :section.sync="sections[1]"></doc-section>
-    <doc-section title="Description" type="descrip" :section.sync="sections[2]"></doc-section>
-    <doc-section title="Parameters" type="params" :section.sync="sections[3]"></doc-section>
+    <doc-section v-for="section in sections" :section.sync="section"></doc-section>
   </div>
 </template>
 
@@ -28,7 +25,12 @@ export default {
     }
   },
   ready () {
-    this.sections = new Array(4)
+    this.sections = [
+      {type: 'group', title: 'Group', input: {}},
+      {type: 'basic', title: 'Header', input: {}},
+      {type: 'descrip', title: 'Description', input: {}},
+      {type: 'params', title: 'Parameters', input: []}
+    ]
   },
   methods: {
     addParam () {

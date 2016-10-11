@@ -1,3 +1,5 @@
-export let obj2doc = function (obj) {
-  return obj.toString()
+import { toDoc } from './lib/toDoc'
+
+export function section2doc (sectionArr) {
+  return toDoc(sectionArr)
 }

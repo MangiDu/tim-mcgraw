@@ -1,33 +1,14 @@
 <template lang="html">
   <div>
-    <div>
-      <label>key</label>
-      <input type="text" v-model="section.keyword" placeholder="eg:  id">
-    </div>
-    <div>
-      <label>type</label>
-      <input type="text" v-model="section.paraType" placeholder="eg:  string">
-    </div>
-    <div>
-      <label>required</label>
-      <div>
-        <Radio-group :model.sync="section.requirement">
-          <Radio value="required">yes</Radio>
-          <Radio value="optional">no</Radio>
-        </Radio-group>
-      </div>
-    </div>
-    <div>
-      <label>description</label>
-      <input type="text" v-model="section.description" placeholder="eg:  学生ID">
-    </div>
+    <param v-for="param in input" :param.sync="param"></param>
+    <button type="button" name="button" @click="addEmptyParam">Add</button>
   </div>
 </template>
 
 <script>
 import DocSection from '../common/DocSection'
-import { Radio } from 'iview'
-const RadioGroup = Radio.Group
+import Param from '../common/Param'
+
 export default {
   props: {
     section: {
@@ -39,10 +20,22 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      input: this.section.input
+    }
+  },
+  attached () {
+    this.addEmptyParam()
+  },
+  methods: {
+    addEmptyParam () {
+      this.input.push({})
+    }
+  },
   components: {
     DocSection,
-    Radio,
-    RadioGroup
+    Param
   }
 }
 </script>

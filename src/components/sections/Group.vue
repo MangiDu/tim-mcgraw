@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <input type="text" v-model="section.name">
+    <input type="text" v-model="input.name">
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
           type: 'group'
         }
       }
+    }
+  },
+  data () {
+    return {
+      input: this.section.input
     }
   },
   components: {

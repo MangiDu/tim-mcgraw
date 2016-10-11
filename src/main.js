@@ -28,6 +28,6 @@ router.map({
   }
 })
 
-Vue.filter('doc', filters.obj2doc)
+Vue.filter('doc', filters.section2doc)
 
 router.start(App, '#app')
