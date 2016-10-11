@@ -2,9 +2,9 @@
   <div>
     <div>
       <label>code</label>
-      <input type="text" name="name" value="">
+      <input type="text" name="name" v-model="input.code">
     </div>
-    <param v-for="param in input" :param.sync="param"></param>
+    <param v-for="param in input.arr || []" :param.sync="param"></param>
     <i-button @click="addEmptyParam">Add</i-button>
   </div>
 </template>
@@ -34,7 +34,10 @@ export default {
   },
   methods: {
     addEmptyParam () {
-      this.input.push({})
+      if (!this.input.arr) {
+        this.$set('input.arr', [])
+      }
+      this.input.arr.$set(this.input.arr.length, {})
     }
   },
   components: {

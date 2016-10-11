@@ -46,9 +46,13 @@ converter.request = function (inputArr) {
   return `${LIST_PREFIX} Request (application/json;charset=utf-8)${LINE_BREAK}${SPACE_GAP}${LIST_PREFIX} Attributes${LINE_BREAK}${reqs}${DOUBLE_LINE_BREAK}`
 }
 
-converter.response = function () {
+converter.response = function (inputObj) {
   // TODO:返回的嵌套层级特别多怎么办
-
+  let ress = ''
+  for (let res of inputObj.arr || []) {
+    ress += `${SPACE_GAP.repeat(2)}${LIST_PREFIX} ${res.keyword}: \`example data\` (${res.paraType}, ${res.requirement}) - ${res.description}${LINE_BREAK}`
+  }
+  return `${LIST_PREFIX} Response ${inputObj.code} (application/json;charset=utf-8)${LINE_BREAK}${SPACE_GAP}${LIST_PREFIX} Attributes${LINE_BREAK}${ress}${DOUBLE_LINE_BREAK}`
 }
 
 export default converter

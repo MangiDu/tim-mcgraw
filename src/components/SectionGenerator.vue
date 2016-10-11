@@ -26,12 +26,12 @@ export default {
   },
   ready () {
     this.sections = [
-      // {type: 'group', title: 'Group', input: {}},
+      {type: 'group', title: 'Group', input: {}},
       {type: 'basic', title: 'Header', input: {}},
       {type: 'descrip', title: 'Description', input: {}},
       {type: 'params', title: 'Parameters', input: []},
       {type: 'request', title: 'Request', input: []},
-      {type: 'response', title: 'Response', input: []}
+      {type: 'response', title: 'Response', input: {}}
     ]
   },
   methods: {
