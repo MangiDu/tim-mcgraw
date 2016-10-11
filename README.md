@@ -26,7 +26,7 @@ npm test
 ```
 
 ## WORDKING ON
-- 
+- data type validate
 
 ## TODOS
 - [] output

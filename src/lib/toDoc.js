@@ -22,11 +22,14 @@ function getSection(arr, type) {
   }
 }
 
-export function toDoc (sectionArr, option) {
+export function toDoc (sectionArr, hasColor) {
+  // option中有hasColor且为true时,这时生成的字符串带颜色显示,但是不能作为流输出,因为包含dom元素
   let resultArr = []
   sectionArr.forEach((section, index) => {
     let sec = Object.assign({}, section)
-    let opt = {}
+    let opt = {
+      hasColor: hasColor
+    }
     // 如果是basic,它的path也会需要params的数据
     if (sec.type === 'basic') {
        let paraSec = getSection(sectionArr, 'params')

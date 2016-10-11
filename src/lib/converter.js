@@ -6,14 +6,27 @@ const LIST_PREFIX = '+'
 const LINE_BREAK = '\n'
 const DOUBLE_LINE_BREAK = '\n'.repeat(2)
 
-function alert (text, color='#ff0000') {
-  return `<span style="color:${color};">${text}</span>`
+const COLOR = {
+  yellow: '#dec24a',
+  green: '#1e9f4e',
+  red: '#ad342c',
+  blue: '#1eb4cf'
+}
+
+function type (text, hasColor, color='#000') {
+  if (hasColor) {
+    return `<span style="color:${color};">${text}</span>`
+  }
+  else {
+    return text
+  }
 }
 
 let converter = {}
 
-converter.group = function (inputObj) {
-  return `${HEAD_PREFIX} Group ${inputObj.name}${DOUBLE_LINE_BREAK}`
+converter.group = function (inputObj, option={}) {
+  let result = `${HEAD_PREFIX} Group ${inputObj.name}${DOUBLE_LINE_BREAK}`
+  return type(result, option.hasColor, COLOR.green)
 }
 
 converter.basic = function (inputObj, option={}) {
@@ -23,36 +36,38 @@ converter.basic = function (inputObj, option={}) {
     // TODO:路径中的param呢
     keys = `{?${option.keys.join(',')}}`
   }
-  return `${HEAD_PREFIX} ${inputObj.keyword || alert('关键字')} [${inputObj.method} ${inputObj.path}${keys}]${DOUBLE_LINE_BREAK}`
+  let part1 = `${HEAD_PREFIX} ${inputObj.keyword}`
+  let part2 = `${inputObj.method} ${inputObj.path}${keys}`
+  return `${type(part1, option.hasColor, COLOR.green)} [${type(part2, option.hasColor, COLOR.yellow)}]${DOUBLE_LINE_BREAK}`
 }
 
-converter.descrip = function (inputObj) {
+converter.descrip = function (inputObj, option={}) {
   return `${inputObj.descrip}${DOUBLE_LINE_BREAK}`
 }
 
-converter.params = function (inputArr) {
+converter.params = function (inputArr, option={}) {
   let params = ''
   for (let param of inputArr) {
-    params += `${SPACE_GAP}${LIST_PREFIX} ${param.keyword}: \`example data\` (${param.paraType}, ${param.requirement}) - ${param.description}${LINE_BREAK}`
+    params += `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(param.paraType, option.hasColor, COLOR.yellow)}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
   }
-  return `${LIST_PREFIX} Parameters${LINE_BREAK}${params}${DOUBLE_LINE_BREAK}`
+  return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Parameters${LINE_BREAK}${params}${DOUBLE_LINE_BREAK}`
 }
 
-converter.request = function (inputArr) {
+converter.request = function (inputArr, option={}) {
   let reqs = ''
   for (let req of inputArr) {
-    reqs += `${SPACE_GAP.repeat(2)}${LIST_PREFIX} ${req.keyword}: \`example data\` (${req.paraType}, ${req.requirement}) - ${req.description}${LINE_BREAK}`
+    reqs += `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${req.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(req.paraType, option.hasColor, COLOR.yellow)}, ${type(req.requirement, option.hasColor, COLOR.blue)}) - ${req.description}${LINE_BREAK}`
   }
-  return `${LIST_PREFIX} Request (application/json;charset=utf-8)${LINE_BREAK}${SPACE_GAP}${LIST_PREFIX} Attributes${LINE_BREAK}${reqs}${DOUBLE_LINE_BREAK}`
+  return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Request (application/json;charset=utf-8)${LINE_BREAK}${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} Attributes${LINE_BREAK}${reqs}${DOUBLE_LINE_BREAK}`
 }
 
-converter.response = function (inputObj) {
+converter.response = function (inputObj, option={}) {
   // TODO:返回的嵌套层级特别多怎么办
   let ress = ''
   for (let res of inputObj.arr || []) {
-    ress += `${SPACE_GAP.repeat(2)}${LIST_PREFIX} ${res.keyword}: \`example data\` (${res.paraType}, ${res.requirement}) - ${res.description}${LINE_BREAK}`
+    ress += `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${res.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(res.paraType, option.hasColor, COLOR.yellow)}, ${type(res.requirement, option.hasColor, COLOR.blue)}) - ${res.description}${LINE_BREAK}`
   }
-  return `${LIST_PREFIX} Response ${inputObj.code} (application/json;charset=utf-8)${LINE_BREAK}${SPACE_GAP}${LIST_PREFIX} Attributes${LINE_BREAK}${ress}${DOUBLE_LINE_BREAK}`
+  return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Response ${type(inputObj.code, option.hasColor, COLOR.yellow)} ${type('(application/json;charset=utf-8)', option.hasColor, COLOR.red)}${LINE_BREAK}${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} Attributes${LINE_BREAK}${ress}${DOUBLE_LINE_BREAK}`
 }
 
 export default converter
