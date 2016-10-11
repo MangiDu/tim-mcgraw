@@ -30,7 +30,7 @@ export default {
     }
   },
   attached () {
-    this.addEmptyParam()
+    // this.addEmptyParam()
   },
   methods: {
     addEmptyParam () {

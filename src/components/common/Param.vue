@@ -6,10 +6,10 @@
     </div>
     <div>
       <label>type</label>
-      <input type="text" v-model="param.paraType" placeholder="eg:  string">
+      <type-select-input :type.sync="param.paraType"></type-select-input>
     </div>
     <div>
-      <label>required</label>
+      <label>requirement</label>
       <div>
         <Radio-group :model.sync="param.requirement">
           <Radio value="required">yes</Radio>
@@ -27,6 +27,7 @@
 <script>
 import { Radio } from 'iview'
 const RadioGroup = Radio.Group
+import TypeSelectInput from './TypeSelectInput'
 export default {
   props: {
     param: {
@@ -41,7 +42,8 @@ export default {
   methods: {},
   components: {
     Radio,
-    RadioGroup
+    RadioGroup,
+    TypeSelectInput
   }
 }
 </script>

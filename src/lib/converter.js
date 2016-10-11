@@ -46,6 +46,9 @@ converter.descrip = function (inputObj, option={}) {
 }
 
 converter.params = function (inputArr, option={}) {
+  if (!inputArr.length) {
+    return
+  }
   let params = ''
   for (let param of inputArr) {
     params += `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(param.paraType, option.hasColor, COLOR.yellow)}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
@@ -54,6 +57,9 @@ converter.params = function (inputArr, option={}) {
 }
 
 converter.request = function (inputArr, option={}) {
+  if (!inputArr.length) {
+    return
+  }
   let reqs = ''
   for (let req of inputArr) {
     reqs += `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${req.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(req.paraType, option.hasColor, COLOR.yellow)}, ${type(req.requirement, option.hasColor, COLOR.blue)}) - ${req.description}${LINE_BREAK}`
@@ -62,6 +68,9 @@ converter.request = function (inputArr, option={}) {
 }
 
 converter.response = function (inputObj, option={}) {
+  if (! inputObj.arr || !inputObj.arr.length) {
+    return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Response ${type(inputObj.code, option.hasColor, COLOR.yellow)}`
+  }
   // TODO:返回的嵌套层级特别多怎么办
   let ress = ''
   for (let res of inputObj.arr || []) {
