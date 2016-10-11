@@ -8,9 +8,9 @@
         <section-shower :sections.sync="sectionArr"></section-shower>
       </i-col>
     </row>
-    <!-- <div class="app-operations">
-      <i-button size="large">See you, see me ~</i-button>
-    </div> -->
+    <div class="app-operations">
+      <i-button size="large" @click="download">See you, see me ~</i-button>
+    </div>
   </div>
 </template>
 
@@ -18,6 +18,8 @@
 import { Row, Col, Button } from 'iview'
 import SectionGenerator from '../components/SectionGenerator'
 import SectionShower from '../components/SectionShower'
+import { saveAs } from 'file-saver'
+import { toDoc } from '../lib/toDoc'
 export default {
   data () {
     return {
@@ -26,7 +28,12 @@ export default {
   },
   computed: {},
   mounted () {},
-  methods: {},
+  methods: {
+    download () {
+      let file = new File([toDoc(this.sectionArr)], "test.apib", {type: "text/plain;charset=utf-8"})
+      saveAs(file)
+    }
+  },
   components: {
     Row,
     iCol: Col,
