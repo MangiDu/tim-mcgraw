@@ -15,7 +15,7 @@ export default {
       required: true,
       default () {
         return {
-          type: 'params'
+          type: 'request'
         }
       }
     }

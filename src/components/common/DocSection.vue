@@ -6,6 +6,8 @@
       <basic v-if="section.type.toLowerCase() === 'basic'" :section.sync="section"></basic>
       <descrip v-if="section.type.toLowerCase() === 'descrip'" :section.sync="section"></descrip>
       <params v-if="section.type.toLowerCase() === 'params'" :section.sync="section"></params>
+      <request v-if="section.type.toLowerCase() === 'request'" :section.sync="section"></request>
+      <response v-if="section.type.toLowerCase() === 'response'" :section.sync="section"></response>
     </div>
   </div>
 </template>
@@ -15,6 +17,8 @@ import Group from '../sections/Group'
 import Basic from '../sections/Basic'
 import Descrip from '../sections/Descrip'
 import Params from '../sections/Params'
+import Request from '../sections/Request'
+import Response from '../sections/Response'
 export default {
   props: {
     section: {
@@ -26,7 +30,9 @@ export default {
     Group,
     Basic,
     Descrip,
-    Params
+    Params,
+    Request,
+    Response
   }
 }
 </script>

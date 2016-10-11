@@ -1,5 +1,9 @@
 <template lang="html">
   <div>
+    <div>
+      <label>code</label>
+      <input type="text" name="name" value="">
+    </div>
     <param v-for="param in input" :param.sync="param"></param>
     <i-button @click="addEmptyParam">Add</i-button>
   </div>
@@ -15,7 +19,7 @@ export default {
       required: true,
       default () {
         return {
-          type: 'params'
+          type: 'response'
         }
       }
     }

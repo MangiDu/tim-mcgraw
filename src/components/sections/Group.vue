@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import DocSection from '../common/DocSection'
 export default {
   props: {
     section: {
@@ -22,9 +21,7 @@ export default {
       input: this.section.input
     }
   },
-  components: {
-    DocSection
-  }
+  components: {}
 }
 </script>
 
