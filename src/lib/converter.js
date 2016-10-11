@@ -1,4 +1,4 @@
-// TODO: enum类型
+// TODO: enum类型,数组类型,数组元素的类型
 
 const SPACE_GAP = ' '.repeat(4)
 const HEAD_PREFIX = '#'
@@ -20,7 +20,7 @@ converter.basic = function (inputObj, option={}) {
   let keys = ''
   if (option.keys && option.keys.length && option.keys[0]) {
     // TODO:可能有先前的部分就有?的情况了
-    keys = `{?${option.keys.join('&')}}`
+    keys = `{?${option.keys.join(',')}}`
   }
   return `${HEAD_PREFIX} ${inputObj.keyword || alert('关键字')} [${inputObj.method} ${inputObj.path}${keys}]${DOUBLE_LINE_BREAK}`
 }

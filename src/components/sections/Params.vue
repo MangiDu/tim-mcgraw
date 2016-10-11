@@ -1,13 +1,14 @@
 <template lang="html">
   <div>
     <param v-for="param in input" :param.sync="param"></param>
-    <button type="button" name="button" @click="addEmptyParam">Add</button>
+    <i-button @click="addEmptyParam">Add</i-button>
   </div>
 </template>
 
 <script>
 import DocSection from '../common/DocSection'
 import Param from '../common/Param'
+import { Button } from 'iview'
 
 export default {
   props: {
@@ -35,7 +36,8 @@ export default {
   },
   components: {
     DocSection,
-    Param
+    Param,
+    iButton: Button
   }
 }
 </script>
