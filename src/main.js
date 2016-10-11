@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
+import * as filters from './filters'
 
 Vue.use(VueRouter)
 let router = new VueRouter({
@@ -26,5 +27,7 @@ router.map({
     }
   }
 })
+
+Vue.filter('doc', filters.obj2doc)
 
 router.start(App, '#app')

@@ -2,10 +2,10 @@
   <div class="doc-section">
     <label class="section-label"><strong>{{ title || 'section title' }}</strong></label>
     <div class="section-content">
-      <group v-if="type.toLowerCase() === 'group'"></group>
-      <basic v-if="type.toLowerCase() === 'basic'"></basic>
-      <descrip v-if="type.toLowerCase() === 'descrip'"></descrip>
-      <params v-if="type.toLowerCase() === 'params'"></params>
+      <group v-if="type.toLowerCase() === 'group'" :section.sync="section"></group>
+      <basic v-if="type.toLowerCase() === 'basic'" :section.sync="section"></basic>
+      <descrip v-if="type.toLowerCase() === 'descrip'" :section.sync="section"></descrip>
+      <params v-if="type.toLowerCase() === 'params'" :section.sync="section"></params>
     </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     title: String,
     type: {
       type: String,
+      required: true
+    },
+    section: {
       required: true
     }
   },

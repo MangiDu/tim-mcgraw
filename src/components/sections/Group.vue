@@ -1,15 +1,20 @@
 <template lang="html">
   <div>
-    <input type="text" v-model="name">
+    <input type="text" v-model="section.name">
   </div>
 </template>
 
 <script>
 import DocSection from '../common/DocSection'
 export default {
-  data () {
-    return {
-      name: ''
+  props: {
+    section: {
+      required: true,
+      default () {
+        return {
+          type: 'group'
+        }
+      }
     }
   },
   components: {

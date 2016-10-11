@@ -1,15 +1,20 @@
 <template lang="html">
   <div>
-    <textarea v-model="descrip"></textarea>
+    <textarea v-model="section.descrip"></textarea>
   </div>
 </template>
 
 <script>
 import DocSection from '../common/DocSection'
 export default {
-  data () {
-    return {
-      descrip: ''
+  props: {
+    section: {
+      required: true,
+      default () {
+        return {
+          type: 'descrip'
+        }
+      }
     }
   },
   components: {

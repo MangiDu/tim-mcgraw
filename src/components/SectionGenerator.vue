@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <doc-section title="Group" type="group" :sections.sync="sections"></doc-section>
-    <doc-section title="Header" type="basic" :sections.sync="sections"></doc-section>
-    <doc-section title="Description" type="descrip" :sections.sync="sections"></doc-section>
-    <doc-section title="Parameters" type="params" :sections.sync="sections"></doc-section>
+    <doc-section title="Group" type="group" :section.sync="sections[0]"></doc-section>
+    <doc-section title="Header" type="basic" :section.sync="sections[1]"></doc-section>
+    <doc-section title="Description" type="descrip" :section.sync="sections[2]"></doc-section>
+    <doc-section title="Parameters" type="params" :section.sync="sections[3]"></doc-section>
   </div>
 </template>
 
@@ -27,8 +27,9 @@ export default {
       paraCache: {}
     }
   },
-  computed: {},
-  mounted () {},
+  ready () {
+    this.sections = new Array(4)
+  },
   methods: {
     addParam () {
       this.params.push(Object.assign({}, this.paraCache))
