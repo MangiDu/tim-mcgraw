@@ -53,6 +53,11 @@ export default {
     return {
     }
   },
+  events: {
+    'section.delete': function (section) {
+      this.sections.$remove(section)
+    }
+  },
   ready () {
     this.sections = []
   },
@@ -71,15 +76,12 @@ export default {
         clone = _.cloneDeep(GROUP_TEMP)
       }
       else {
-        console.log(type)
         let result = _.filter(SECTION_TEMP, {type: type})
         clone = _.cloneDeep(result)
       }
       clone.forEach((obj) => {
         obj.sectionId = _.uniqueId(ID_PREFIX)
       })
-      console.log(clone)
-      console.log('================')
       this.sections = [...this.sections, ...clone]
     }
   },

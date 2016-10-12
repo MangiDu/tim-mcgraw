@@ -10,7 +10,7 @@
       <response v-if="section.type.toLowerCase() === 'response'" :section.sync="section"></response>
     </div>
     <div class="section-operations">
-      <span class="close"></span>
+      <span class="close" @click="prepareDelete"></span>
     </div>
   </div>
 </template>
@@ -28,7 +28,11 @@ export default {
       required: true
     }
   },
-  methods: {},
+  methods: {
+    prepareDelete () {
+      this.$dispatch('section.delete', this.section)
+    }
+  },
   components: {
     Group,
     Basic,
