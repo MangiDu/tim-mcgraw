@@ -8,7 +8,7 @@
     </div>
     <param v-for="param in input.arr || []" :param.sync="param"></param>
     <div class="params-operations">
-      <i-button @click="addEmptyParam">Add</i-button>
+      <i-button @click="addEmptyParam" size="small">Add</i-button>
     </div>
   </div>
 </template>
