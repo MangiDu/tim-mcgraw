@@ -28,6 +28,10 @@ npm test
 ## WORDKING ON
 - data type validate
 
+## LOGS
+- 2016-10-12 15:00
+**can't continue with the awful "converter" wroted, prepare to rewrite**
+
 ## TODOS
 - [] output
 - [] add
