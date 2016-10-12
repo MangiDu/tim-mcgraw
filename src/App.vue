@@ -6,7 +6,12 @@
     <div class="container">
       <router-view></router-view>
     </div>
-    <footer class="app-footer"></footer>
+    <footer class="app-footer">
+      <h3>Why Tim McGraw?</h3>
+      <p>
+        The name came from Taylor Swift's first well-known piece of her very first album which has a same name as her own, also considered as another country singer who was teen Tay's idol.
+      </p>
+    </footer>
   </section>
 </template>
 
