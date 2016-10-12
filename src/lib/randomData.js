@@ -13,7 +13,7 @@ function randomData (type, option = {}) {
         result = chance.string()
         break
       case 'number':
-        result = chance.integer()
+        result = chance.natural()
         break
       case 'boolean':
         result = chance.bool()
