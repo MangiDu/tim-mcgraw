@@ -1,11 +1,15 @@
 <template lang="html">
-  <div>
-    <div>
+  <div class="params">
+    <div class="form-control">
       <label>code</label>
-      <input type="text" name="name" v-model="input.code">
+      <div class="input-wrapper">
+        <input type="text" name="name" v-model="input.code">
+      </div>
     </div>
     <param v-for="param in input.arr || []" :param.sync="param"></param>
-    <i-button @click="addEmptyParam">Add</i-button>
+    <div class="params-operations">
+      <i-button @click="addEmptyParam">Add</i-button>
+    </div>
   </div>
 </template>
 

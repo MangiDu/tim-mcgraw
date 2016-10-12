@@ -15,8 +15,9 @@ html, body
 
 .container
   width: 90%
+  min-width: 720px
   padding: 20px
-  border-radius: 4px
+  border-radius: radius-wrapper
   margin: 0 auto
   background-color: color-fg
   box-shadow: 0 0 6px color-shadow
@@ -26,7 +27,7 @@ html, body
     &:focus
       outline: none
       border-color: color-focus
-      box-shadow: 0 0 2px color-focus
+      box-shadow: 0 0 2px color-focus inset
 
 .app-footer
   position: absolute

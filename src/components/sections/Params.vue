@@ -1,7 +1,9 @@
 <template lang="html">
-  <div>
+  <div class="params">
     <param v-for="param in input" :param.sync="param"></param>
-    <i-button @click="addEmptyParam">Add</i-button>
+    <div class="params-operations">
+      <i-button @click="addEmptyParam">Add</i-button>
+    </div>
   </div>
 </template>
 

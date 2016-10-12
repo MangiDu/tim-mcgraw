@@ -6,11 +6,11 @@
       </i-col>
       <i-col class="app-col" span="12">
         <section-shower :sections.sync="sectionArr"></section-shower>
+        <div class="app-operations">
+          <i-button size="large" @click="download">I hope you think of me ~</i-button>
+        </div>
       </i-col>
     </row>
-    <div class="app-operations">
-      <i-button size="large" @click="download">I hope you think of me ~</i-button>
-    </div>
   </div>
 </template>
 

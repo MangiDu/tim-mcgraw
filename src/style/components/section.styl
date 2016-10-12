@@ -1,0 +1,71 @@
+.doc-section
+  position: relative
+  margin-top: 10px
+  &:first-child
+    margin-top: 0
+  .section-label
+    position: absolute
+    top: 0
+    left: 0
+    padding-right: 10px
+    width: 80px
+    text-align: right
+  .section-content
+    margin-left: 80px
+
+.section-content
+  .input-wrapper
+    input, textarea
+      width: 100%
+    textarea
+      height: 100%
+      resize: none
+
+.section-shower
+  textarea
+    width: 100%
+    height: 300px
+    resize: none
+
+  .preview
+    border-radius: radius-wrapper
+    border: 1px solid #eee
+    margin: 0
+    padding: 10px
+    min-height: 380px
+    overflow: overlay
+    white-space: pre-wrap
+    font-size: 14px
+    line-height: 1.2
+    background-color: #4b4b4b
+    color: #f9f9f9
+
+.form-control
+  display: flex
+  flex-flow: nowrap
+  align-content: stretch
+  margin-top: 10px
+  &:first-child
+    margin-top: 0
+  > label
+    display: inline-block
+    border: 1px solid color-border
+    border-right: none
+    border-radius: radius-input 0 0 radius-input
+    width: 80px
+    text-align: center
+    background-color: color-bg
+  > .input-wrapper
+    flex: 1
+    input, textarea
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+    &.ivu-radio-group
+      display: flex
+      .ivu-radio-group-item
+        flex: 1
+        &:first-child
+          border-top-left-radius: 0
+          border-bottom-left-radius: 0
+  + .params-operations
+    margin-top: 10px

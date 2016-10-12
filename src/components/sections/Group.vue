@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="input-wrapper">
     <input type="text" v-model="input.name">
   </div>
 </template>

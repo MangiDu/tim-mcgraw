@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="input-wrapper">
     <textarea v-model="input.descrip"></textarea>
   </div>
 </template>
