@@ -9,7 +9,13 @@
     <div class="form-control">
       <label>type</label>
       <div class="input-wrapper">
-        <select-input :item.sync="param.paraType" :list="['string', 'number', 'boolean', 'object', 'array', 'enum']"></select-input>
+        <select-input :item.sync="param.paraType" :list="types"></select-input>
+      </div>
+    </div>
+    <div class="form-control" v-if="oneOf(param.paraType, complex)">
+      <label>nested</label>
+      <div class="input-wrapper">
+        <textarea v-model="param.nested"></textarea>
       </div>
     </div>
     <div class="form-control">
@@ -37,6 +43,7 @@
 import { Radio, Row, Col } from 'iview'
 const RadioGroup = Radio.Group
 import SelectInput from './SelectInput'
+import { oneOf } from '../../lib/utils'
 export default {
   props: {
     param: {
@@ -49,12 +56,17 @@ export default {
         'required',
         'optional',
         'fixed'
-      ]
+      ],
+      types: ['string', 'number', 'boolean', 'object', 'array', 'enum'],
+      simple: ['string', 'number', 'boolean'],
+      complex: ['object', 'array', 'enum']
     }
   },
   computed: {},
   mounted () {},
-  methods: {},
+  methods: {
+    oneOf
+  },
   components: {
     Radio,
     Row,

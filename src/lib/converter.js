@@ -1,5 +1,6 @@
 // TODO: enum类型,数组类型,数组元素的类型
 import { isObjEmpty } from './utils'
+import randomData from './randomData'
 
 const SPACE_GAP = ' '.repeat(4)
 const HEAD_PREFIX = '#'
@@ -58,7 +59,25 @@ converter.params = function (inputArr, option={}) {
   }
   let params = ''
   for (let param of inputArr) {
-    params += `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: \`${type('example data', option.hasColor, COLOR.green)}\` (${type(param.paraType, option.hasColor, COLOR.yellow)}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
+    let fake = '\`example data\`'
+    if (param.paraType) {
+      fake = randomData(param.paraType)
+    }
+    if (param.paraType === 'string') {
+      fake = `\`${fake}\``
+    }
+    params += `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: ${type(fake, option.hasColor, COLOR.green)} (${type(param.paraType, option.hasColor, COLOR.yellow)}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
+    switch (param.paraType) {
+      case 'enum':
+        let mems = (param.nested || '').split('\n')
+        params += `${SPACE_GAP.repeat(2)} ${LIST_PREFIX} Members${LINE_BREAK}`
+        for (let mem of mems) {
+          params += `${SPACE_GAP.repeat(3)} ${LIST_PREFIX} ${mem}${LINE_BREAK}`
+        }
+        break
+      default:
+
+    }
   }
   return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Parameters${LINE_BREAK}${params}${MULTI_LINE_BREAK}`
 }

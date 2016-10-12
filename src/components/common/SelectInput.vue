@@ -2,7 +2,8 @@
   <div class="select-input">
     <input type="text" v-model="item" @focus="inputFocus = true" @blur="inputFocus = false" @keyup.enter="checkToSet()">
     <ul class="list" v-show="showList" @mouseover="listMouseover = true" @mouseout="listMouseover = false">
-      <li class="item" v-for="listItem in list | filterBy item" @click="set(listItem)">{{ listItem }}</li>
+      <!-- <li class="item" v-for="listItem in list | filterBy item" @click="set(listItem)">{{ listItem }}</li> -->
+      <li class="item" v-for="listItem in list" @click="set(listItem)">{{ listItem }}</li>
     </ul>
   </div>
 </template>
