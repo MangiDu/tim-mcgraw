@@ -9,6 +9,9 @@
       <request v-if="section.type.toLowerCase() === 'request'" :section.sync="section"></request>
       <response v-if="section.type.toLowerCase() === 'response'" :section.sync="section"></response>
     </div>
+    <div class="section-operations">
+      <span class="close"></span>
+    </div>
   </div>
 </template>
 

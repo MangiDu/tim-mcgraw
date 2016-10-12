@@ -32,8 +32,9 @@ export function toDoc (sectionArr, hasColor) {
     }
     // 如果是basic,它的path也会需要params的数据
     if (sec.type === 'basic') {
-       let paraSec = getSection(sectionArr, 'params')
-       let keys = Array.from(paraSec.input, item => item.keyword)
+      // TODO: 这里这两个或太难过了...我知道这么用不好!!!后面再改吧QWQ
+       let paraSec = getSection(sectionArr, 'params') || {}
+       let keys = Array.from(paraSec.input || [], item => item.keyword)
        opt.keys = keys
     }
     let result = convert(sec, opt)
