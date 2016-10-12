@@ -1,4 +1,5 @@
 // TODO: enum类型,数组类型,数组元素的类型
+import { isObjEmpty } from './utils'
 
 const SPACE_GAP = ' '.repeat(4)
 const HEAD_PREFIX = '#'
@@ -25,24 +26,29 @@ function type (text, hasColor, color='#000') {
 let converter = {}
 
 converter.group = function (inputObj, option={}) {
-  let result = `${HEAD_PREFIX} Group ${inputObj.name}${MULTI_LINE_BREAK}`
-  return type(result, option.hasColor, COLOR.green)
+  if (inputObj.name && inputObj.name.length) {
+    let result = `${HEAD_PREFIX} Group ${inputObj.name}${MULTI_LINE_BREAK}`
+    return type(result, option.hasColor, COLOR.green)
+  }
 }
 
 converter.basic = function (inputObj, option={}) {
+  if (isObjEmpty(inputObj)) {
+    return
+  }
   let keys = ''
   if (option.keys && option.keys.length && option.keys[0]) {
     // TODO:可能有先前的部分就有?的情况了
     // TODO:路径中的param呢
     keys = `{?${option.keys.join(',')}}`
   }
-  let part1 = `${HEAD_PREFIX} ${inputObj.keyword}`
-  let part2 = `${inputObj.method} ${inputObj.path}${keys}`
+  let part1 = `${HEAD_PREFIX} ${inputObj.keyword || ''}`
+  let part2 = `${inputObj.method || ''} ${inputObj.path || ''}${keys}`
   return `${type(part1, option.hasColor, COLOR.green)} [${type(part2, option.hasColor, COLOR.yellow)}]${MULTI_LINE_BREAK}`
 }
 
 converter.descrip = function (inputObj, option={}) {
-  return `${inputObj.descrip}${MULTI_LINE_BREAK}`
+  return `${inputObj.descrip || ''}${MULTI_LINE_BREAK}`
 }
 
 converter.params = function (inputArr, option={}) {
@@ -69,7 +75,10 @@ converter.request = function (inputArr, option={}) {
 
 converter.response = function (inputObj, option={}) {
   if (! inputObj.arr || !inputObj.arr.length) {
-    return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Response ${type(inputObj.code, option.hasColor, COLOR.yellow)}`
+    if (inputObj.code) {
+      return `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Response ${type(inputObj.code, option.hasColor, COLOR.yellow)}`
+    }
+    else return
   }
   // TODO:返回的嵌套层级特别多怎么办
   let ress = ''

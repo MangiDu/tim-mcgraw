@@ -6,3 +6,11 @@ export function oneOf (value, validList) {
     }
     return false;
 }
+
+export function isObjEmpty (obj) {
+  if (typeof obj !== 'object') return false
+  for (let key in obj) {
+    return false
+  }
+  return true
+}
