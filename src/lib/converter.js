@@ -33,6 +33,7 @@ converter.group = function (inputObj, option={}) {
 }
 
 converter.basic = function (inputObj, option={}) {
+  // TODO:有key没值的情况
   if (isObjEmpty(inputObj)) {
     return
   }
