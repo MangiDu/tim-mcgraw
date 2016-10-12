@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="select-input">
-    <input type="text" v-model="item" @focus="inputFocus = true" @blur="inputFocus = false">
+    <input type="text" v-model="item" @focus="inputFocus = true" @blur="inputFocus = false" @keyup.enter="checkToSet()">
     <ul class="list" v-show="showList" @mouseover="listMouseover = true" @mouseout="listMouseover = false">
       <li class="item" v-for="listItem in list | filterBy item" @click="set(listItem)">{{ listItem }}</li>
     </ul>
@@ -37,6 +37,11 @@ export default {
     set (item) {
       this.item = item
       this.reset()
+    },
+    checkToSet (list) {
+      // TODO:这个方法想做的事情是回车后自动补全
+      // vue的过滤器仅在模板中才起作用,2.0有在讨论这个问题
+      // https://github.com/vuejs/vue/issues/2756
     }
   }
 }
