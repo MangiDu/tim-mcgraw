@@ -39,5 +39,6 @@ export function toDoc (sectionArr, hasColor) {
     let result = convert(sec, opt)
     resultArr.push(result)
   })
-  return resultArr.join('')
+  let result = resultArr.join('')
+  return result.trim() || '还没有内容咕╮(╯▽╰)╭...\n\n但添加了内容你就看不到萌萌的提示君了(●\'◡\'●)ﾉ♥...\n\n做选择吧,要我还是要文档(╬￣皿￣)凸...'
 }
