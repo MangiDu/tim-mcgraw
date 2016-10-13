@@ -7,13 +7,19 @@
       </div>
     </div>
     <div class="form-control">
+      <label>description</label>
+      <div class="input-wrapper">
+        <textarea type="text" v-model="param.description"></textarea>
+      </div>
+    </div>
+    <div class="form-control">
       <label>type</label>
       <div class="input-wrapper">
         <select-input :item.sync="param.paraType" :list="types"></select-input>
       </div>
     </div>
     <div class="form-control" v-if="oneOf(param.paraType, complex)">
-      <label>nested</label>
+      <label>{{ param.paraType }} nested</label>
       <div class="input-wrapper">
         <textarea v-model="param.nested"></textarea>
       </div>
@@ -29,12 +35,6 @@
       <Radio-group class="input-wrapper" :model.sync="param.requirement" type="button" size="small">
         <Radio v-for="state in requirements" :value="state">{{ state }}</Radio>
       </Radio-group>
-    </div>
-    <div class="form-control">
-      <label>description</label>
-      <div class="input-wrapper">
-        <textarea type="text" v-model="param.description"></textarea>
-      </div>
     </div>
   </div>
 </template>
