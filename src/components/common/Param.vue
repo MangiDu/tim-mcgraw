@@ -32,11 +32,6 @@
     </div>
     <div class="form-control">
       <label>requirement</label>
-      <!-- <div class="input-wrapper">
-        <Radio-group :model.sync="param.requirement" type="button" size="small">
-          <Radio v-for="state in requirements" :value="state">{{ state }}</Radio>
-        </Radio-group>
-      </div> -->
       <!-- 这里后面还是自己写一个组件统一一下吧,样式先hack着 -->
       <Radio-group class="input-wrapper" :model.sync="param.requirement" type="button" size="small">
         <Radio v-for="state in requirements" :value="state">{{ state }}</Radio>
