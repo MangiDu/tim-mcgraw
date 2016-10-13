@@ -1,25 +1,6 @@
 <template lang="html">
   <div>
     <doc-section v-for="section in sections" :section.sync="section" track-by="$index"></doc-section>
-    <row class="sections-operations">
-      <i-col span="2">
-        <i-button type="primary" size="small" @click="addApi">API</i-button>
-      </i-col>
-      <i-col span="22">
-        <button-group size="small">
-          <i-button @click="addOne('group')">Group</i-button>
-        </button-group>
-        <button-group size="small">
-          <i-button @click="addOne('basic')">Header</i-button>
-          <i-button @click="addOne('descrip')">Description</i-button>
-        </button-group>
-        <button-group size="small">
-          <i-button @click="addOne('params')">Parameters</i-button>
-          <i-button @click="addOne('request')">Request</i-button>
-          <i-button @click="addOne('response')">Response</i-button>
-        </button-group>
-      </i-col>
-    </row>
   </div>
 </template>
 
@@ -56,6 +37,15 @@ export default {
   events: {
     'section.delete': function (section) {
       this.sections.$remove(section)
+    },
+    'section.add': function (type) {
+      switch (type) {
+        case 'api':
+          this.addApi()
+          break
+        default:
+          this.addOne(type)
+      }
     }
   },
   ready () {
