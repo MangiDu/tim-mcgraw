@@ -18,6 +18,12 @@
         <select-input :item.sync="param.paraType" :list="types"></select-input>
       </div>
     </div>
+    <div class="form-control" v-if="param.paraType === 'array'">
+      <label>subtype</label>
+      <div class="input-wrapper">
+        <select-input :item.sync="param.subtype" :list="subtypes"></select-input>
+      </div>
+    </div>
     <div class="form-control" v-if="oneOf(param.paraType, complex)">
       <label>{{ param.paraType }} nested</label>
       <div class="input-wrapper">
@@ -59,7 +65,8 @@ export default {
       ],
       types: ['string', 'number', 'boolean', 'object', 'array', 'enum'],
       simple: ['string', 'number', 'boolean'],
-      complex: ['object', 'array', 'enum']
+      complex: ['object', 'array', 'enum'],
+      subtypes: ['string', 'number', 'boolean', 'object']
     }
   },
   computed: {},

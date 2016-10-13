@@ -78,6 +78,7 @@ converter.params = function (inputArr, option={}) {
     }
     // 简单数据类型填写fake
     // 复杂数据类型填写fake和suffix,或者...直接改写paraTpl
+    let mems, headerStr, content, pattern
     switch (param.paraType) {
       // 简单数据类型
       case 'string':
@@ -91,11 +92,11 @@ converter.params = function (inputArr, option={}) {
         break
       // TODO:复杂的情况 enum和array[object]
       case 'enum':
-        let mems = (param.nested || '').split('\n')
-        let enumHeadStr = `${SPACE_GAP.repeat(2)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} Members${LINE_BREAK}`
-        let content = ''
+        mems = (param.nested || '').split('\n')
+        headerStr = `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} Members${LINE_BREAK}`
+        content = ''
         // TODO:现在是必须有个空格分隔才能截取出来,正则还要再细化
-        let pattern = /^(\S*)\s?(\(\S*\))?\s?\-?\s?(\S*)?\n?/
+        pattern = /^(\S*)\s?(\(\S*\))?\s?\-?\s?(\S*)?\n?/
         for (let [index, text] of mems.entries()) {
           let partials = text.match(pattern)
           if (index === 0) {
@@ -107,12 +108,20 @@ converter.params = function (inputArr, option={}) {
               return `(${type(arguments[1], option.hasColor, 'yellow')})`
             })
           }
-          content += `${SPACE_GAP.repeat(3)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${text}${LINE_BREAK}`
+          content += `${SPACE_GAP.repeat(3)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${text}${LINE_BREAK}`
         }
-        suffix = `${enumHeadStr}${content}`
+        suffix = `${headerStr}${content}`
+        break
+      case 'object':
+        mems = (param.nested || '').split('\n')
+        content = ''
+        for (let [index, text] of mems.entries()) {
+          content += `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${text}${LINE_BREAK}`
+        }
+        suffix = content
         break
       case 'arary':
-
+        let arrayHeadStr = `${SPACE_GAP.repeat(2)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} Members${LINE_BREAK}`
         break
     }
     params += paraTpl(fake, suffix)
