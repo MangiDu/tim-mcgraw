@@ -10,7 +10,7 @@ function randomData (type, option = {}) {
   if (oneOf(type, TYPE)) {
     switch (type) {
       case 'string':
-        result = chance.string()
+        result = `\`${chance.string()}\``
         break
       case 'number':
         result = chance.natural()

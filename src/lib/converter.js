@@ -1,7 +1,7 @@
-// NOTE: 因为使用pre做最后的显示和输出,所以使用``字符串模板时切记不能换行,或者使用+操作符
+// NOTE: 因为使用pre做最后的显示和输出,所以使用``字符串模板时切记不能换行,可以使用+操作符连接
 
 // TODO: enum类型,数组类型,数组元素的类型
-import { isObjEmpty } from './utils'
+import { isObjEmpty, oneOf } from './utils'
 import randomData from './randomData'
 
 const SPACE_GAP = ' '.repeat(4)
@@ -63,9 +63,12 @@ converter.params = function (inputArr, option={}) {
   let headStr = `${type(LIST_PREFIX, option.hasColor, COLOR.red)} Parameters${LINE_BREAK}`
   let params = ''
   for (let param of inputArr) {
-    let fake, suffix
-    let paraTpl = function (fake, suffix = '') {
-      let tpl = `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: ${type(fake, option.hasColor, COLOR.green)} (${type(param.paraType, option.hasColor, COLOR.yellow)}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
+    let fake, suffix, subtype
+    let paraTpl = function (fake, suffix = '', subtype = '') {
+      if (subtype) {
+        subtype = `[${type(subtype, option.hasColor, 'yellow')}]`
+      }
+      let tpl = `${SPACE_GAP}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${param.keyword}: ${type(fake, option.hasColor, COLOR.green)} (${type(param.paraType, option.hasColor, COLOR.yellow)}${subtype}, ${type(param.requirement, option.hasColor, COLOR.blue)}) - ${param.description}${LINE_BREAK}`
       switch (typeof suffix) {
         case 'string':
           tpl += suffix
@@ -82,7 +85,7 @@ converter.params = function (inputArr, option={}) {
     switch (param.paraType) {
       // 简单数据类型
       case 'string':
-        fake = `\`${randomData('string')}\``
+        fake = randomData('string')
         break
       case 'number':
         fake = randomData('number')
@@ -120,11 +123,27 @@ converter.params = function (inputArr, option={}) {
         }
         suffix = content
         break
-      case 'arary':
-        let arrayHeadStr = `${SPACE_GAP.repeat(2)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} Members${LINE_BREAK}`
+      case 'array':
+        mems = (param.nested || '').split('\n')
+        subtype = param.subtype
+        fake = ''
+        headerStr = ''
+        content = ''
+        if (oneOf(subtype, ['string', 'number', 'boolean'])) {
+          for (let i = 0; i < 3; i++) {
+            content += `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${randomData(subtype)}${LINE_BREAK}`
+          }
+        }
+        else if (subtype === 'object') {
+          headerStr = `${SPACE_GAP.repeat(2)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} (${type('object', option.hasColor, 'yellow')})${LINE_BREAK}`
+          for (let [index, text] of mems.entries()) {
+            content += `${SPACE_GAP.repeat(3)}${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${text}${LINE_BREAK}`
+          }
+        }
+        suffix = `${headerStr}${content}`
         break
     }
-    params += paraTpl(fake, suffix)
+    params += paraTpl(fake, suffix, subtype)
   }
   return `${headStr}${params}${MULTI_LINE_BREAK}`
 }

@@ -24,7 +24,7 @@
         <select-input :item.sync="param.subtype" :list="subtypes"></select-input>
       </div>
     </div>
-    <div class="form-control" v-if="oneOf(param.paraType, complex)">
+    <div class="form-control" v-if="oneOf(param.paraType, complex) && ((param.subtype && !oneOf(param.subtype, simple)) || (!param.subtype && param.paraType === 'enum'))">
       <label>{{ param.paraType }} nested</label>
       <div class="input-wrapper">
         <textarea v-model="param.nested"></textarea>
