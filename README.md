@@ -39,6 +39,7 @@ npm test
 - [] edit
 - [] delete
 - [] batch operations
+- [] change log
 
 ## Somthing About The Name
 The name came from Taylor Swift's first well-known piece of her very first album which has a same name as her own, also considered as another country singer who was teen Tay's idol.
