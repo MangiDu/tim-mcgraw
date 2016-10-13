@@ -3,7 +3,7 @@
     <div class="form-control">
       <label>code</label>
       <div class="input-wrapper">
-        <input type="text" name="name" v-model="input.code">
+        <input type="text" v-model="input.code">
       </div>
     </div>
     <param v-for="param in input.arr || []" :param.sync="param"></param>
