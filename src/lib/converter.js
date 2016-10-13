@@ -36,6 +36,7 @@ converter.group = function (inputObj, option={}) {
 }
 
 converter.basic = function (inputObj, option={}) {
+  // TODO:仅匹配一次parameters的参数,现在是所有的basic信息都会有同一个parameter是列表
   // TODO:有key没值的情况
   if (isObjEmpty(inputObj)) {
     return
@@ -91,10 +92,22 @@ converter.params = function (inputArr, option={}) {
       // TODO:复杂的情况 enum和array[object]
       case 'enum':
         let mems = (param.nested || '').split('\n')
-        let enumHeadStr = `${SPACE_GAP.repeat(2)} ${LIST_PREFIX} Members${LINE_BREAK}`
+        let enumHeadStr = `${SPACE_GAP.repeat(2)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} Members${LINE_BREAK}`
         let content = ''
-        for (let [index, mem] of mems) {
-          content += `${SPACE_GAP.repeat(3)} ${LIST_PREFIX} ${mem}${LINE_BREAK}`
+        // TODO:现在是必须有个空格分隔才能截取出来,正则还要再细化
+        let pattern = /^(\S*)\s?(\(\S*\))?\s?\-?\s?(\S*)?\n?/
+        for (let [index, text] of mems.entries()) {
+          let partials = text.match(pattern)
+          if (index === 0) {
+            fake = partials[1] || ''
+          }
+          if (partials[2] && partials[2].length) {
+            '(git)'.replace(pattern, function($2){return '111'})
+            text = text.replace(/\((\S*)\)/, function () {
+              return `(${type(arguments[1], option.hasColor, 'yellow')})`
+            })
+          }
+          content += `${SPACE_GAP.repeat(3)} ${type(LIST_PREFIX, option.hasColor, COLOR.red)} ${text}${LINE_BREAK}`
         }
         suffix = `${enumHeadStr}${content}`
         break
