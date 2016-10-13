@@ -1,4 +1,6 @@
 import converter from './converter'
+import _ from 'lodash'
+// QWQ用了lodash...大概不会需要我自己再写工具方法了
 
 function convert (section, option={}) {
   if (!section || !section.type) {
@@ -12,16 +14,6 @@ function convert (section, option={}) {
   return converter[section.type.toLowerCase()](section.input, option)
 }
 
-// 现在还没那么多的section,先这么写,后面肯定要改
-// 如果情况复杂可能还是要自己写些工具方法
-function getSection(arr, type) {
-  for (let item of arr) {
-    if (item.type === type) {
-      return item
-    }
-  }
-}
-
 export function toDoc (sectionArr, hasColor) {
   // option中有hasColor且为true时,这时生成的字符串带颜色显示,但是不能作为流输出,因为包含dom元素
   let resultArr = []
@@ -33,9 +25,29 @@ export function toDoc (sectionArr, hasColor) {
     // 如果是basic,它的path也会需要params的数据
     if (sec.type === 'basic') {
       // TODO: 这里这两个或太难过了...我知道这么用不好!!!后面再改吧QWQ
-       let paraSec = getSection(sectionArr, 'params') || {}
-       let keys = Array.from(paraSec.input || [], item => item.keyword)
-       opt.keys = keys
+      // 这里应该只匹配它之后的(下一个basic前的)可能有的params
+      // 使用index来判断
+      let nextParamIndex = _.findIndex(sectionArr, {type: 'params'}, index + 1)
+      let nextBasicIndex = _.findIndex(sectionArr, {type: 'basic'}, index + 1)
+      // console.log('now ' + index)
+      // console.log('nextParamIndex ' + nextParamIndex)
+      // console.log('nextBasicIndex ' + nextBasicIndex)
+      // console.log('------------------------')
+      let paraSec
+      if (~nextBasicIndex){
+        if (~nextParamIndex && nextParamIndex < nextBasicIndex) {
+          paraSec = sectionArr[nextParamIndex]
+        }
+        else {
+          paraSec = {}
+        }
+      }
+      else {
+        paraSec = sectionArr[nextParamIndex] || {}
+      }
+
+      let keys = Array.from(paraSec.input || [], item => item.keyword)
+      opt.keys = keys
     }
     let result = convert(sec, opt)
     resultArr.push(result)
