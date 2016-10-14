@@ -1,6 +1,16 @@
 <template lang="html">
   <div>
     <doc-section v-for="section in sections" :section.sync="section" track-by="$index"></doc-section>
+    <div class="doc-section fake" v-if="!sections.length">
+      <label class="section-label">
+        <span class="fake-content"></span>
+      </label>
+      <div class="section-content">
+        <span class="fake-content"></span>
+        <span class="fake-content"></span>
+        <span class="fake-content half"></span>
+      </div>
+    </div>
   </div>
 </template>
 
