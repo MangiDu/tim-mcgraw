@@ -37,7 +37,7 @@ export default {
       this.listMouseover = false
     },
     set (index, reset = false) {
-      this.index = index || this.index
+      this.index = index === 0 ? 0 : index || this.index
       this.item = this.list[this.index]
       if (reset) {
         this.reset()
