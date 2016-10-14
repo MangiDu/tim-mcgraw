@@ -33,14 +33,13 @@
           </div>
         </i-col>
       </row>
-
     </div>
     <row class="app-row" type="flex" justify="end">
       <i-col class="app-col" span="12">
         <section-generator :sections.sync="sectionArr"></section-generator>
       </i-col>
       <i-col class="app-col" span="12">
-        <section-shower :sections.sync="sectionArr"></section-shower>
+        <section-shower v-el:right-fix :class="{'app-right-fixed': topFixed}" :sections.sync="sectionArr"></section-shower>
       </i-col>
     </row>
   </div>
@@ -63,15 +62,24 @@ export default {
     }
   },
   attached () {
+    if (!this._rightWidth & !this._rightHeight) {
+      this._rightWidth = this.$els.rightFix.clientWidth + 'px'
+      this._rightHeight = (window.innerHeight - '180') + 'px'
+      this.$els.rightFix.style.maxHeight = this._rightHeight
+    }
+    // TODO: when window resized
     this._scrollCallback = _.debounce((e) => {
       if (!this._startOffset) {
         this._startOffset = this.$els.topFix.offsetTop
       }
       if (document.body.scrollTop > this._startOffset) {
         this.topFixed = true
+        this.$els.rightFix.style.top = '60px'
+        this.$els.rightFix.style.width = this._rightWidth
       }
       else {
         this.topFixed = false
+        this.$els.rightFix.style.width = 'auto'
       }
     }, 10)
     document.addEventListener('scroll', this._scrollCallback)
