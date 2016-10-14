@@ -5,8 +5,8 @@
         <i-col span='12'>
           <div class="sections-operations">
             <row>
-              <i-col span="2"><strong>Add</strong></i-col>
-              <i-col span="22">
+              <i-col span="3"><strong>Add</strong></i-col>
+              <i-col span="20">
                 <i-button type="ghost" size="small" @click="add('api')">API</i-button>
                 <i-button size="small" @click="add('group')">Group</i-button>
                 <button-group size="small">
