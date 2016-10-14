@@ -63,7 +63,8 @@ export default {
   },
   attached () {
     if (!this._rightWidth & !this._rightHeight) {
-      this._rightWidth = this.$els.rightFix.clientWidth + 'px'
+      // TODO:为啥是8?我也不知道啊?滚动条?
+      this._rightWidth = (this.$els.rightFix.clientWidth - 8) + 'px'
       this._rightHeight = (window.innerHeight - '180') + 'px'
       this.$els.rightFix.style.maxHeight = this._rightHeight
     }
