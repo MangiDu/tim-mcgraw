@@ -33,13 +33,17 @@ npm test
 **can't continue with the awful "converter" wroted, prepare to rewrite**
 
 ## TODOS
-- [] output
-- [] add
-- [] list
-- [] edit
-- [] delete
-- [] batch operations
-- [] change log
+- [ ] output
+- [ ] add
+- [ ] list
+- [ ] edit
+- [ ] delete
+- [ ] batch operations
+- [ ] insert in random order
+- [ ] choose whether to generate fake data
+- [ ] editing status switch
+- [ ] list or singleton
+- [ ] change log
 
 ## Somthing About The Name
 The name came from Taylor Swift's first well-known piece of her very first album which has a same name as her own, also considered as another country singer who was teen Tay's idol.
